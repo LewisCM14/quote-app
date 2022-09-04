@@ -1,10 +1,10 @@
 import { Fragment, useEffect } from "react";
 import { useParams, Route, Link, useRouteMatch } from "react-router-dom";
-import useHttp from "../hooks/use-http";
-import { getSingleQuote } from "../libs/api";
 
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
 import Comments from "../components/comments/Comments";
+import useHttp from "../hooks/use-http";
+import { getSingleQuote } from "../libs/api";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 const QuoteDetail = () => {
@@ -37,9 +37,8 @@ const QuoteDetail = () => {
     return <p className="centered">{error}</p>;
   }
 
-  // if no quote object is falsy
-  if (loadedQuote.text) {
-    return <p>No Quote found!</p>;
+  if (!loadedQuote.text) {
+    return <p>No quote found!</p>;
   }
 
   return (
