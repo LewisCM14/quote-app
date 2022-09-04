@@ -30,9 +30,13 @@ const QuoteList = (props) => {
   // passed to QuoteItem component below.
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
+  // on click, evaluates isSortingAscending, if true switches to descending
   const changeSortingHandler = () => {
-    // on click, evaluates isSortingAscending, if true switches to descending
-    history.push("/quotes?sort=" + (isSortingAscending ? "desc" : "asc"));
+    // navigation object, describes target destination
+    history.push({
+      pathname: location.pathname, // remain on current page
+      search: `?sort=${isSortingAscending ? "desc" : "asc"}`, // query parameters
+    });
   };
 
   return (
